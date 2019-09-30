@@ -5,7 +5,7 @@ import LCA
 
 class TestfindLCA(unittest.TestCase):
 
-    def test_findLCA(self):
+    def test_balanced_tree(self):
         ## Test 1 ##
         #   Testing a simple balanced binary tree
         #
@@ -28,7 +28,8 @@ class TestfindLCA(unittest.TestCase):
         self.assertEqual(LCA.findLCA(root, 3, 4), 1, "Should be 1")
         self.assertEqual(LCA.findLCA(root, 2, 4), 2, "Should be 2")
 
-        ## Test 2 ##
+    def test_left_leaning_tree(self):
+         ## Test 2 ##
         #   Testing a left leaning tree
         #
         #                                               1
@@ -45,7 +46,7 @@ class TestfindLCA(unittest.TestCase):
         #   /
         # 7
         #
-        
+
         root = LCA.Node(1) 
         root.left = LCA.Node(2) 
         root.left.left = LCA.Node(3) 
@@ -53,6 +54,38 @@ class TestfindLCA(unittest.TestCase):
         root.left.left.left.left = LCA.Node(5) 
         root.left.left.left.left.left = LCA.Node(6) 
         root.left.left.left.left.left.left = LCA.Node(7) 
+
+        self.assertEqual(LCA.findLCA(root, 4, 5), 4, "Should be 4")
+        self.assertEqual(LCA.findLCA(root, 4, 6), 4, "Should be 4")
+        self.assertEqual(LCA.findLCA(root, 3, 4), 3, "Should be 3")
+        self.assertEqual(LCA.findLCA(root, 2, 4), 2, "Should be 2")
+
+    def test_right_leaning_tree(self):
+        ## Test 3 ##
+        #   Testing a right leaning tree
+        #
+        #   1
+        #       \
+        #           2
+        #               \
+        #                   3
+        #                       \
+        #                           4
+        #                               \
+        #                                   5
+        #                                       \
+        #                                           6
+        #                                               \
+        #                                                   7
+        #
+        
+        root = LCA.Node(1) 
+        root.right = LCA.Node(2) 
+        root.right.right = LCA.Node(3) 
+        root.right.right.right = LCA.Node(4) 
+        root.right.right.right.right = LCA.Node(5) 
+        root.right.right.right.right.right = LCA.Node(6) 
+        root.right.right.right.right.right.right = LCA.Node(7) 
 
         self.assertEqual(LCA.findLCA(root, 4, 5), 4, "Should be 4")
         self.assertEqual(LCA.findLCA(root, 4, 6), 4, "Should be 4")
