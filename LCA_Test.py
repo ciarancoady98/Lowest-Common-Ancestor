@@ -4,8 +4,14 @@ import LCA
 class TestfindLCA(unittest.TestCase):
 
     def test_findLCA(self):
-        # Driver program to test above function 
-        # Let's create the Binary Tree shown in above diagram 
+        #   Testing a simple balanced binary tree
+        #
+        #               1
+        #       |               |
+        #       2               3
+        #   |       |       |       |
+        #   4       5       6       7
+        #
         root = LCA.Node(1) 
         root.left = LCA.Node(2) 
         root.right = LCA.Node(3) 
