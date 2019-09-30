@@ -7,13 +7,20 @@ class TestfindLCA(unittest.TestCase):
 
     def test_null_tree(self):
         ## Test 1 ##
+        #  Testing a null input
+        self.assertEqual(LCA.findLCA(None, 0, 0), -1, "Should be -1")
+        self.assertEqual(LCA.findLCA(None, 1, 5), -1, "Should be -1")
+        self.assertEqual(LCA.findLCA(None, -10, 6), -1, "Should be -1")
 
-        self.assertEqual(LCA.findLCA(None, 0, 0), -1, "Should be 0")
-        self.assertEqual(LCA.findLCA(None, 1, 5), -1, "Should be 0")
-        self.assertEqual(LCA.findLCA(None, -10, 6), -1, "Should be 0")
+    def test_leaf_node(self):
+        ## Test 2 ##
+        #  Testing with a single leaf node and keys not in the tree
+        self.assertEqual(LCA.findLCA(LCA.Node(1), 1, 1), 1, "Should be 1")
+        self.assertEqual(LCA.findLCA(LCA.Node(1), 1, 5), -1, "Should be -1")
+        self.assertEqual(LCA.findLCA(LCA.Node(1), -10, 6), -1, "Should be -1")
 
     def test_balanced_tree(self):
-        ## Test 2 ##
+        ## Test 3 ##
         #   Testing a simple balanced binary tree
         #
         #               1
@@ -36,7 +43,7 @@ class TestfindLCA(unittest.TestCase):
         self.assertEqual(LCA.findLCA(root, 2, 4), 2, "Should be 2")
 
     def test_left_leaning_tree(self):
-         ## Test 3 ##
+         ## Test 4 ##
         #   Testing a left leaning tree
         #
         #                                               1
@@ -68,7 +75,7 @@ class TestfindLCA(unittest.TestCase):
         self.assertEqual(LCA.findLCA(root, 2, 4), 2, "Should be 2")
 
     def test_right_leaning_tree(self):
-        ## Test 4 ##
+        ## Test 5 ##
         #   Testing a right leaning tree
         #
         #   1
