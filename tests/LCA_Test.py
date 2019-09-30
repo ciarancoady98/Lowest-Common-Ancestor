@@ -1,4 +1,6 @@
 import unittest
+import sys
+sys.path.append('../src')
 import LCA
 
 class TestfindLCA(unittest.TestCase):
@@ -43,6 +45,7 @@ class TestfindLCA(unittest.TestCase):
         #   /
         # 7
         #
+        
         root = LCA.Node(1) 
         root.left = LCA.Node(2) 
         root.left.left = LCA.Node(3) 
