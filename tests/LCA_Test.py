@@ -5,6 +5,9 @@ import LCA
 
 class TestfindLCA(unittest.TestCase):
 
+    def test_null_node(self):
+        self.assertEquals(LCA.Node(None),None, "Should be null")
+
     def test_null_tree(self):
         ## Test 1 ##
         #  Testing a null input
