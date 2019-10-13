@@ -148,6 +148,7 @@ class TestfindLCA(unittest.TestCase):
         self.assertEqual(LCA.findLCA(root, 4, 6), 1, "Should be 1")
         self.assertEqual(LCA.findLCA(root, 3, 4), 1, "Should be 1")
         self.assertEqual(LCA.findLCA(root, 2, 4), 2, "Should be 2")
+        self.assertEqual(LCA.findLCA(root, 4, 8), 4, "Should be 4")
         self.assertEqual(LCA.findLCA(root, 8, 4), 4, "Should be 4")
         self.assertEqual(LCA.findLCA(root, 8, 5), 5, "Should be 5")
         self.assertEqual(LCA.findLCA(root, 6, 9), 6, "Should be 6")
