@@ -7,7 +7,7 @@ class TestfindLCA(unittest.TestCase):
 
     def test_null_node(self):
         testNode = LCA.Node(None)
-        self.assertEquals(testNode.key,None, "Should be null")
+        self.assertEqual(testNode.key,None, "Should be null")
 
     def test_null_tree(self):
         ## Test 1 ##
@@ -109,6 +109,42 @@ class TestfindLCA(unittest.TestCase):
         self.assertEqual(LCA.findLCA(root, 4, 6), 4, "Should be 4")
         self.assertEqual(LCA.findLCA(root, 3, 4), 3, "Should be 3")
         self.assertEqual(LCA.findLCA(root, 2, 4), 2, "Should be 2")
+
+    def test_balanced_tree_common_parent(self):
+        ## Test 3 ##
+        #   Testing a simple balanced binary tree
+        #
+        #               1
+        #       |               |
+        #       2               3
+        #   |       |       |       |
+        #   4       5       6       7
+        #       |               |
+        #       8               9
+        #
+        root = LCA.Node(1) 
+        root.left = LCA.Node(2) 
+        root.right = LCA.Node(3) 
+        root.left.left = LCA.Node(4) 
+        root.left.right = LCA.Node(5) 
+        root.right.left = LCA.Node(6) 
+        root.right.right = LCA.Node(7) 
+        sharedNode1 = LCA.Node(8)
+        root.left.left.right = sharedNode1
+        root.left.right.left = sharedNode1
+        sharedNode2 = LCA.Node(9)
+        root.right.left.right = sharedNode2
+        root.right.right.left = sharedNode2
+
+        self.assertEqual(LCA.findLCA(root, 4, 5), 2, "Should be 2")
+        self.assertEqual(LCA.findLCA(root, 4, 6), 1, "Should be 1")
+        self.assertEqual(LCA.findLCA(root, 3, 4), 1, "Should be 1")
+        self.assertEqual(LCA.findLCA(root, 2, 4), 2, "Should be 2")
+        self.assertEqual(LCA.findLCA(root, 8, 4), 2, "Should be 2")
+        self.assertEqual(LCA.findLCA(root, 8, 5), 2, "Should be 2")
+        self.assertEqual(LCA.findLCA(root, 6, 9), 3, "Should be 3")
+        self.assertEqual(LCA.findLCA(root, 7, 9), 3, "Should be 3")
+
 
 if __name__ == '__main__':
     unittest.main()
