@@ -11,6 +11,10 @@ class Node:
 		self.visited = False
 
 def findLCA(root, key1, key2):
+
+	if(root is not None):
+		if(root.left is None and root.right is None and (key1 is not key2)):
+			return -1
 	
 	return findLCARecursive(root, key1, key2, [False], [False])
 
