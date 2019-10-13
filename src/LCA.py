@@ -12,21 +12,28 @@ class Node:
 
 def findLCA(root, key1, key2):
 
-	if(root == None):
+	# If the node is null return
+	if(root is None):
 		return -1
 
-	if(root.key == key1 or root.key == key2):
+	# If the node has been visited return as we have found a cycle
+	if(root.visited is True):
+		return -1
+
+	root.visited = True
+	left_subtree = findLCA(root.left, key1, key2)
+	right_subtree = findLCA(root.right, key1, key2)
+	
+	if(left_subtree is not -1 and right_subtree is not -1):
 		return root.key
 
+	if((root.key is key1 or root.key is key2) and left_subtree is not -1):
+		return left_subtree
 	
+	if((root.key is key1 or root.key is key2) and right_subtree is not -1):
+		return right_subtree
+	
+	if(root.key is key1 or root.key is key2):
+		return root.key
 
 	return -1
-
-def findLCARecursive(root, key):
-	if(root.key == key):
-		return True
-	if(root.left != None):
-		return findLCARecursive(root.left, key)
-	if(root.right != None):
-		return findLCARecursive(root.right, key)
-	return False
