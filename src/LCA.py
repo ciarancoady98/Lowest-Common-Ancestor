@@ -15,19 +15,16 @@ def findLCA(root, key1, key2):
 	if(root is not None):
 		if(root.left is None and root.right is None and (key1 is not key2)):
 			return -1
-	
 	return findLCARecursive(root, key1, key2, [False], [False])
 
 def findLCARecursive(root, key1, key2, found1, found2):
 
 	# If the node is null return
 	if(root is None):
-		print("root is none")
 		return -1
 
 	# If the node has been visited return as we have found a cycle
 	if(root.visited is True):
-		print(root.key, key1, key2, found1, found2, "cycle has occured")
 		return -1
 
 	root.visited = True
