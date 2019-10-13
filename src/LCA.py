@@ -22,7 +22,7 @@ def findLCA(root, key1, key2):
 		print(root.key, key1, key2, "cycle has occured")
 		return -1
 
-	root.visited = True
+	#root.visited = True
 	left_subtree = findLCA(root.left, key1, key2)
 	right_subtree = findLCA(root.right, key1, key2)
 
@@ -34,6 +34,7 @@ def findLCA(root, key1, key2):
 			print(root.key, key1, key2, "root.key matches key 1 or 2 and other key in right subtree")
 			return root.key
 		else:
+			print("we found a lone key")
 			return root.key
 	
 	if(left_subtree is not -1 and right_subtree is not -1):
