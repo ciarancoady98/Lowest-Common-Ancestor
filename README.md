@@ -14,3 +14,19 @@ Pytest is used to run unit tests.
 Pytests coverage plugin is used to check code coverage, as shown below.
 
 ![Screenshot](docs/unitTests.png)
+
+# Docker
+
+For ease of development and testing I have included a Dockerfile, from which you can
+build a docker image that includes all the necessary dependencies. 
+
+After cloning the repo and navigating to the Lowest-Common-Ancestor root directory, build
+the docker image using the command
+
+docker build -t python_dev ., this builds a docker image with the tag python_dev from the 
+dockerfile in the current directory.
+
+Once this is completed successfully you can run the container using the command:
+docker run -i -t --name python python_dev. This will create an interactive container called python from the python_dev image we just made.
+
+After running the container you should be greeted with a bash shell and instructions on how to run tests and check for code coverage.
