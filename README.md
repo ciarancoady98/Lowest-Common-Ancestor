@@ -38,4 +38,4 @@ Once this is completed successfully you can run the container using the command:
 
 After running the container you should be greeted with a bash shell and instructions on how to run tests and check for code coverage.
 
-![Docker](docs/DockerSetup.png)
+![Docker](docs/DockerSetup.PNG)
