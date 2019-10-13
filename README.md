@@ -37,3 +37,5 @@ Once this is completed successfully you can run the container using the command:
 `docker run -i -t --name python python_dev` This will create an interactive container called python from the python_dev image we just made.
 
 After running the container you should be greeted with a bash shell and instructions on how to run tests and check for code coverage.
+
+![Docker](docs/DockerSetup.png)
