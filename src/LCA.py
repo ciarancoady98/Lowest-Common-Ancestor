@@ -12,6 +12,10 @@ class Node:
 
 def findLCA(root, key1, key2):
 	
+	return findLCARecursive(root, key1, key2, [False], [False])
+
+def findLCARecursive(root, key1, key2, found1, found2):
+
 	# If the node is null return
 	if(root is None):
 		print("root is none")
@@ -19,34 +23,30 @@ def findLCA(root, key1, key2):
 
 	# If the node has been visited return as we have found a cycle
 	if(root.visited is True):
-		print(root.key, key1, key2, "cycle has occured")
+		print(root.key, key1, key2, found1, found2, "cycle has occured")
 		return -1
 
-	#root.visited = True
-	left_subtree = findLCA(root.left, key1, key2)
-	right_subtree = findLCA(root.right, key1, key2)
+	root.visited = True
+	left_subtree = findLCARecursive(root.left, key1, key2, found1, found2)
+	right_subtree = findLCARecursive(root.right, key1, key2, found1, found2)
 
-	if(root.key is key1 or root.key is key2):
-		if(left_subtree is not -1):
-			print(root.key, key1, key2, "root.key matches key 1 or 2 and other key in left subtree")
+	if(root.key is key1):
+		found1[0] = True
+		if(found2[0] is True):
 			return root.key
-		elif(right_subtree is not -1):
-			print(root.key, key1, key2, "root.key matches key 1 or 2 and other key in right subtree")
+	
+	if(root.key is key2):
+		found2[0] = True
+		if(found1[0] is True):
 			return root.key
+		
+	if(found1[0] is True and found2[0] is True):
+		if(left_subtree is not -1 and right_subtree is not -1):
+			return root.key
+		elif(left_subtree is not -1):
+			return left_subtree
 		else:
-			print("we found a lone key")
-			return root.key
-	
-	if(left_subtree is not -1 and right_subtree is not -1):
-		print(root.key, key1, key2, "key in both subtrees")
-		return root.key
+			return right_subtree
 
-	if(left_subtree is not -1):
-		print(root.key, key1, key2, "key in left subtree")
-		return left_subtree
 	
-	if(right_subtree is not -1):
-		print(root.key, key1, key2, "key in right subtree")
-		return right_subtree
-
 	return -1
