@@ -23,6 +23,14 @@ class TestfindLCA(unittest.TestCase):
         self.assertEqual(LCA.findLCA(LCA.Node(1), 1, 5), -1, "Should be -1")
         self.assertEqual(LCA.findLCA(LCA.Node(1), -10, 6), -1, "Should be -1")
 
+    def test_node_with_cycle(self):
+        ## Test 3 ##
+        # Testing a node that has its self as its child
+        root = LCA.Node(1)
+        root.left = root
+        root.right = root
+        self.assertEqual(LCA.findLCA(root, 1, 1), 1, "Should be 1")
+
     def test_balanced_tree(self):
         ## Test 3 ##
         #   Testing a simple balanced binary tree
