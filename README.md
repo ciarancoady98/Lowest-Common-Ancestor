@@ -8,6 +8,13 @@ A python program that gets the lowest common ancestor for a graph
 [pytest](https://docs.pytest.org/en/latest/)
 [pytest-cov](https://coverage.readthedocs.io/en/v4.5.x/)
 
+## Optional
+
+Alternatively you can run the complete development environment based on the included
+Dockerfile, in which case you will need to have docker installed and configured for your machine.
+
+[docker](https://www.docker.com/)
+
 # Testing
 
 Pytest is used to run unit tests.
@@ -24,7 +31,7 @@ After cloning the repo and navigating to the Lowest-Common-Ancestor root directo
 the docker image using the command:
 
 `docker build -t python_dev .` this builds a docker image with the tag python_dev from the 
-dockerfile in the current directory.
+included dockerfile.
 
 Once this is completed successfully you can run the container using the command:
 `docker run -i -t --name python python_dev` This will create an interactive container called python from the python_dev image we just made.
