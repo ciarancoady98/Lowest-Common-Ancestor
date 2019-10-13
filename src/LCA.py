@@ -32,13 +32,11 @@ def findLCARecursive(root, key1, key2, found1, found2):
 
 	if(root.key is key1):
 		found1[0] = True
-		if(found2[0] is True):
-			return root.key
-	
+		return root.key
+		
 	if(root.key is key2):
 		found2[0] = True
-		if(found1[0] is True):
-			return root.key
+		return root.key
 		
 	if(found1[0] is True and found2[0] is True):
 		if(left_subtree is not -1 and right_subtree is not -1):
@@ -48,5 +46,10 @@ def findLCARecursive(root, key1, key2, found1, found2):
 		else:
 			return right_subtree
 
+	if(left_subtree is not -1):
+		return left_subtree
+	
+	if(right_subtree is not -1):
+		return right_subtree
 	
 	return -1
