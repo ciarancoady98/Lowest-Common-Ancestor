@@ -13,7 +13,7 @@ class TestfindLCA(unittest.TestCase):
 
     def test_empty_graph(self):
         graph = LCA.Graph(1)
-        graph.addEdge(LCA.Node(1), LCA.Node(1))
+        graph.addEdge(LCA.Node(1), None)
         #  Testing with a single leaf node and keys not in the tree
         self.assertEqual(LCA.findLCA(graph, 1, 1, 1), -1, "Should be 1")
         self.assertEqual(LCA.findLCA(graph, 1, 1, 5), -1, "Should be -1")

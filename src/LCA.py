@@ -1,20 +1,22 @@
-# Python3 Program to print BFS traversal 
-# from a given source vertex. BFS(int s) 
-# traverses vertices reachable from s. 
+# Author Ciaran Coady
+# Python program that takes a brute force approach
+# to find the lowest common ancestor of two nodes in
+# a directed acyclic graph.
 from collections import defaultdict 
 
+# This class creates the node for a graph that stores
+# a key
 class Node:
 	def __init__(self, key):
 		self.key = key
 
-# This class represents a directed graph 
-# using adjacency list representation 
+# This class constructs an adjacency list 
+# representation of a directed graph
 class Graph: 
-
-	# Constructor 
 	def __init__(self, noOfVertices): 
 
 		# Initialise the adjacency array
+		# with the number of vertices
 		self.graph = []
 		self.noOfVertices = noOfVertices
 		i = 0
@@ -22,7 +24,7 @@ class Graph:
 			self.graph.append([])
 			i+=1
 
-	# Function to add an edge to graph 
+	# Function to add an edge to the graph 
 	def addEdge(self,u,v): 
 		self.graph[u.key].append(v)
 
@@ -30,12 +32,8 @@ class Graph:
 	def printGraph(self):
 		print(self.graph) 
 
-def findLongest(list1, list2):
-	if(len(list1) >= len(list2)):
-		return len(list1)
-	return len(list2)
-	
-
+# A helper function that does a DFS of the graph in search of the keys
+# and if found, returns paths to those nodes 
 def LCARecursive(graph, stack, visited, current, key1, key2, paths1, paths2):
 	if(current >= 0 and current <= graph.noOfVertices):
 		stack.append(current)
@@ -50,7 +48,7 @@ def LCARecursive(graph, stack, visited, current, key1, key2, paths1, paths2):
 			print("edge:",current,node.key)
 			LCARecursive(graph, stack, visited, node.key, key1, key2, paths1, paths2)
 		stack.pop()
-	return -1
+	return
 	
 
 def findLCA(graph, start, node1, node2):
@@ -63,6 +61,9 @@ def findLCA(graph, start, node1, node2):
 			LCARecursive(graph, stack, None, start, node1, node2, paths1, paths2)
 			print("paths1 : ",paths1)
 			print("paths2 : ",paths2)
+			if(paths1 is [] or paths2 is []):
+				print("no common ancestor")
+				return -1
 			greatestCommonAncestor = -1
 			depth = -1
 			for path1 in paths1 :
@@ -100,19 +101,3 @@ def findLCA(graph, start, node1, node2):
 			print("this graph has less than 1 vertex")
 	else:
 		return -1
-
-def main():
-	graph = Graph(8)
-	graph.addEdge(Node(1),Node(2))
-	graph.addEdge(Node(1),Node(3))
-	graph.addEdge(Node(2),Node(4))
-	graph.addEdge(Node(2),Node(5))
-	graph.addEdge(Node(3),Node(6))
-	graph.addEdge(Node(3),Node(7))
-	graph.addEdge(Node(4),Node(8))
-	graph.addEdge(Node(5),Node(8))
-	graph.printGraph()
-	findLCA(graph,1,4,8)
-
-if __name__ == "__main__":
-    main()
