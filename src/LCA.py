@@ -1,73 +1,51 @@
-# Python Program for Lowest Common Ancestor in a Directed Acyclic Graph
+# Python3 Program to print BFS traversal 
+# from a given source vertex. BFS(int s) 
+# traverses vertices reachable from s. 
+from collections import defaultdict 
 
-# A Node in the graph 
-class Node: 
-	# Constructor to create a new binary node 
-	def __init__(self, key): 
-		self.key = key 
-		
-class DirectedEdge:
-	def __init__(self, src, dest):
-		self.src = src
-		self.dest = dest
+# This class represents a directed graph 
+# using adjacency list representation 
+class Graph: 
 
-class DirectedGraph:
-	def __init__(self):
-		self.edges = []
+	# Constructor 
+	def __init__(self): 
 
-	def addEdge(self, src, dest):
-		self.edges.append(DirectedEdge(src,dest))
+		# default dictionary to store graph 
+		self.graph = defaultdict(list) 
 
-def findLCA(root, key1, key2):
-	# Check if the initial root node is null, if so don't recurse
-	if(root is not None):
-		if(root.left is None and root.right is None and (key1 is not key2)):
-			return -1
-	return findLCARecursive(root, key1, key2, [False], [False])
+	# function to add an edge to graph 
+	def addEdge(self,u,v): 
+		self.graph[u].append(v) 
 
-def findLCARecursive(root, key1, key2, found1, found2):
+	# Function to print a BFS of graph 
+	def BFS(self, s): 
 
-	# If the node is null return
-	if(root is None):
-		return -1
+		# Mark all the vertices as not visited 
+		visited = [False] * (len(self.graph)) 
 
-	# If the node has been visited return as we have found a cycle
-	if(root.visited is True):
-		return -1
+		# Create a queue for BFS 
+		queue = [] 
 
-	# Otherwise visit this node and search its left and right subtrees
-	#root.visited = True
-	left_subtree = findLCARecursive(root.left, key1, key2, found1, found2)
-	right_subtree = findLCARecursive(root.right, key1, key2, found1, found2)
-	# After we've made the recursive call we are no longer checking for cycles
-	# so leave the node the way we found it 
-	#root.visited = False
+		# Mark the source node as 
+		# visited and enqueue it 
+		queue.append(s) 
+		visited[s] = True
 
-	# If we find a key, set its boolean and return the key
-	if(root.key is key1):
-		found1[0] = True
-		return root.key
-		
-	if(root.key is key2):
-		found2[0] = True
-		return root.key
+		while queue: 
 
-	# If we have found both keys do a case analysis to return the correct value	
-	if(found1[0] is True and found2[0] is True):
-		if(left_subtree is not -1 and right_subtree is not -1):
-			return root.key
-		elif(left_subtree is not -1):
-			return left_subtree
-		else:
-			return right_subtree
+			# Dequeue a vertex from 
+			# queue and print it 
+			s = queue.pop(0) 
+			print (s, " ") 
 
-	# If execution has fallen through to here it means the keys lie in the same
-	# subtree, return the LCA
-	if(left_subtree is not -1):
-		return left_subtree
-	
-	if(right_subtree is not -1):
-		return right_subtree
-	
-	# No keys found return failure
+			# Get all adjacent vertices of the 
+			# dequeued vertex s. If a adjacent 
+			# has not been visited, then mark it 
+			# visited and enqueue it 
+			for i in self.graph[s]: 
+				if visited[i] == False: 
+					queue.append(i) 
+					visited[i] = True
+
+def findLCA(graph, key1, key2):
 	return -1
