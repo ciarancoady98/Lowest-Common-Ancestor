@@ -84,7 +84,9 @@ def findLCA(graph, start, key1, key2):
 						print("currentCommonAncestor: ", currentCommonAncestor)
 					elif(i > depth):
 						greatestCommonAncestor = currentCommonAncestor
+						depth = i
 						print("greatestCommonAncestor : ", greatestCommonAncestor)
+						break
 					i += 1
 	print("The greatest common ancestor is : ", greatestCommonAncestor)
 	return greatestCommonAncestor
@@ -100,7 +102,7 @@ def main():
 	graph.addEdge(4,8)
 	graph.addEdge(5,8)
 	graph.printGraph()
-	findLCA(graph,1,5,8)
+	findLCA(graph,1,4,8)
 
 if __name__ == "__main__":
     main()
