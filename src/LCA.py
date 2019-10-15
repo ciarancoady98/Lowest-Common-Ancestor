@@ -12,54 +12,44 @@ class Graph:
 
 		# default dictionary to store graph 
 		self.graph = defaultdict(list) 
+		self.numberOfVertices = 0
 
 	# function to add an edge to graph 
 	def addEdge(self,u,v): 
 		self.graph[u].append(v) 
+		self.numberOfVertices +=1
 
-# Function to print a BFS of graph 
+# Function to print a DFS of graph 
 def DFS(graph, start, key): 
-
-	# Mark all the vertices as not visited 
-	visited = []
-	for(vertex in graph.graph):
-		visited[vertex] = False
-
-	# Create a stack for DFS 
-	stack = [] 
-
-	# Mark the source node as 
-	# visited and enqueue it 
-	stack.append(start) 
-	visited[start] = True
-
-	while stack: 
-
-		# Dequeue a vertex from 
-		# queue and print it 
-		s = queue.pop(0) 
-		print (s, " ") 
-
-		# Get all adjacent vertices of the 
-		# dequeued vertex s. If a adjacent 
-		# has not been visited, then mark it 
-		# visited and enqueue it 
-		for i in self.graph[s]: 
-			if visited[i] == False: 
-				queue.append(i) 
-				visited[i] = True
-
-def DFSRecursvie(graph, stack, visited, current, key):
-	# Mark the current node as visited and print it 
-    visited[current] = true; 
-    cout << v << " "; 
-  
-    // Recur for all the vertices adjacent to this vertex 
-    list<int>::iterator i; 
-    for(i = adj[v].begin(); i != adj[v].end(); ++i) 
-        if(!visited[*i]) 
-            DFSUtil(*i, visited); 
+	if(graph is not None):
+		stack = []
+		print("Number of vertices",len(graph.graph))
+		DFSRecursive(graph, stack, None, start, key)
 	return -1
+
+def DFSRecursive(graph, stack, visited, current, key):
+
+	if(current >= 0 and current < len(graph.graph)):
+		stack.append(current)
+		print("Current:",current)
+		for edge in graph.graph[current]:
+			print("edge:",edge)
+			DFSRecursive(graph, stack, visited, edge, key)
+	return -1
+	
 
 def findLCA(graph, key1, key2):
 	return -1
+
+def main():
+	graph = Graph()
+	graph.addEdge(1,2)
+	graph.addEdge(1,3)
+	graph.addEdge(2,4)
+	graph.addEdge(2,5)
+	graph.addEdge(3,6)
+	graph.addEdge(3,7)
+	DFS(graph,1,7)
+
+if __name__ == "__main__":
+    main()
