@@ -51,19 +51,16 @@ def LCARecursive(graph, stack, visited, current, key1, key2, paths1, paths2):
 	return
 	
 
-def findLCA(graph, start, node1, node2):
+def findLCA(graph, start, key1, key2):
 	if(graph is not None):
 
-		if(graph.noOfVertices > 1):
+		if(graph.noOfVertices > 2):
 			stack = []
 			paths1 = []
 			paths2 = []
-			LCARecursive(graph, stack, None, start, node1, node2, paths1, paths2)
+			LCARecursive(graph, stack, None, start, key1, key2, paths1, paths2)
 			print("paths1 : ",paths1)
 			print("paths2 : ",paths2)
-			if(paths1 is [] or paths2 is []):
-				print("no common ancestor")
-				return -1
 			greatestCommonAncestor = -1
 			depth = -1
 			for path1 in paths1 :
@@ -99,5 +96,8 @@ def findLCA(graph, start, node1, node2):
 			return greatestCommonAncestor
 		else:
 			print("this graph has less than 1 vertex")
+			if(key1 is graph.graph[1] or key2 is graph.graph[1]):
+				return 1
+
 	else:
 		return -1
