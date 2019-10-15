@@ -5,9 +5,18 @@ class Node:
 	# Constructor to create a new binary node 
 	def __init__(self, key): 
 		self.key = key 
-		self.left = None
-		self.right = None
-		self.visited = False
+		
+class DirectedEdge:
+	def __init__(self, src, dest):
+		self.src = src
+		self.dest = dest
+
+class DirectedGraph:
+	def __init__(self):
+		self.edges = []
+
+	def addEdge(self, src, dest):
+		self.edges.append(DirectedEdge(src,dest))
 
 def findLCA(root, key1, key2):
 	# Check if the initial root node is null, if so don't recurse
