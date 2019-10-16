@@ -12,9 +12,9 @@ class TestfindLCA(unittest.TestCase):
         self.assertEqual(LCA.findLCA(None, 1, -10, 6), -1, "Should be -1")
 
     def test_empty_graph(self):
+        # Testing with a single leaf node and keys not in the tree
         graph = LCA.Graph(1)
         graph.addVertex(1)
-        # Testing with a single leaf node and keys not in the tree
         self.assertEqual(LCA.findLCA(graph, 1, 1, 1), 1, "Should be 1")
         self.assertEqual(LCA.findLCA(graph, 1, 1, 5), -1, "Should be -1")
         self.assertEqual(LCA.findLCA(graph, 1, -10, 6), -1, "Should be -1")
@@ -60,9 +60,8 @@ class TestfindLCA(unittest.TestCase):
 
         
         
-    def test_left_leaning_tree(self):
-         ## Test 4 ##
-        #   Testing a left leaning tree
+    def test_single_path_graph(self):
+        #   Testing a single path graph
         #
         #                                               1
         #                                           /
@@ -100,7 +99,6 @@ class TestfindLCA(unittest.TestCase):
         self.assertEqual(LCA.findLCA(graph, 1, 2, 4), 2, "Should be 2")
 
     def test_balanced_tree_common_parent(self):
-        ## Test 3 ##
         #   Testing a simple balanced binary tree
         #
         #               1
