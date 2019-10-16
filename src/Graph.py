@@ -60,13 +60,19 @@ def LCARecursive(graph, stack, visited, current, key1, key2, paths1, paths2):
 
 def findLCA(graph, start, key1, key2):
 	if(graph is not None):
+		# Check if the graph is just single nodes with no edges
 		if(graph.isConnected() is True):
+			# Keep track of the current path
 			stack = []
+			# Store paths to nodes that we find
 			paths1 = []
 			paths2 = []
+			# Do a DFS in search of keys, if we find a key store it to its path
 			LCARecursive(graph, stack, None, start, key1, key2, paths1, paths2)
 			greatestCommonAncestor = -1
 			depth = -1
+			# Nested loops to iterate through all the paths and compare
+			# to find common ancestors
 			for path1 in paths1 :
 				for path2 in paths2 :
 					len1 = len(path1)
