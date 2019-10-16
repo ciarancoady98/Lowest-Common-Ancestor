@@ -83,10 +83,8 @@ def findLCA(graph, start, key1, key2):
 						path2Node = -1
 						if(i<len1):
 							path1Node = path1[i]
-
 						if(i<len2):
 							path2Node = path2[i]
-						
 						if(path1Node == path2Node):
 							currentCommonAncestor = path1Node
 						elif(i > depth):
@@ -96,11 +94,13 @@ def findLCA(graph, start, key1, key2):
 						i += 1
 			return greatestCommonAncestor
 		else :
+			print("key1:",key1," key2:",key2)
 			# Check if both keys are the same and the key is in the graph
 			if(key1 is key2):
 				for vertex in graph.vertices:
 					if(vertex is key1):
 						return key1
+			# Otherwise we know these nodes are not connected so return -1
 			return -1
 	else:
 		return -1
