@@ -16,8 +16,8 @@ class TestfindLCA(unittest.TestCase):
         graph.addVertex(1)
         #  Testing with a single leaf node and keys not in the tree
         self.assertEqual(LCA.findLCA(graph, 1, 1, 1), 1, "Should be 1")
-        #self.assertEqual(LCA.findLCA(graph, 1, 1, 5), -1, "Should be -1")
-        #self.assertEqual(LCA.findLCA(graph, 1, -10, 6), -1, "Should be -1")
+        self.assertEqual(LCA.findLCA(graph, 1, 1, 5), -1, "Should be -1")
+        self.assertEqual(LCA.findLCA(graph, 1, -10, 6), -1, "Should be -1")
 
     def test_print_graph(self):
         graph = LCA.Graph(3)

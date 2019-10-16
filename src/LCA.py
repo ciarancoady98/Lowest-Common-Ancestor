@@ -39,6 +39,7 @@ class Graph:
 	def printGraph(self):
 		print(self.graph) 
 
+	# Returns if nodes in the graph are connected by edges
 	def isConnected(self):
 		return self.hasEdges
 
@@ -48,14 +49,10 @@ def LCARecursive(graph, stack, visited, current, key1, key2, paths1, paths2):
 	if(current >= 0 and current <= graph.noOfVertices):
 		stack.append(current)
 		if(current is key1):
-			print("Return path for key 1")
 			paths1.append(list(stack))
 		if(current is key2):
-			print("Return path for key 2")
 			paths2.append(list(stack))
-		print ("start of dfs recursive : stack : ",stack," current : ",current," noOfVertices : ",graph.noOfVertices)
 		for node in graph.graph[current]:
-			print("edge:",current,node.key)
 			LCARecursive(graph, stack, visited, node.key, key1, key2, paths1, paths2)
 		stack.pop()
 	return
@@ -63,13 +60,11 @@ def LCARecursive(graph, stack, visited, current, key1, key2, paths1, paths2):
 
 def findLCA(graph, start, key1, key2):
 	if(graph is not None):
-		if(graph.isConnected is True):
+		if(graph.isConnected() is True):
 			stack = []
 			paths1 = []
 			paths2 = []
 			LCARecursive(graph, stack, None, start, key1, key2, paths1, paths2)
-			print("paths1 : ",paths1)
-			print("paths2 : ",paths2)
 			greatestCommonAncestor = -1
 			depth = -1
 			for path1 in paths1 :
@@ -94,14 +89,11 @@ def findLCA(graph, start, key1, key2):
 						
 						if(path1Node == path2Node):
 							currentCommonAncestor = path1Node
-							print("currentCommonAncestor: ", currentCommonAncestor)
 						elif(i > depth):
 							greatestCommonAncestor = currentCommonAncestor
 							depth = i
-							print("greatestCommonAncestor : ", greatestCommonAncestor)
 							break
 						i += 1
-			print("The greatest common ancestor is : ", greatestCommonAncestor)
 			return greatestCommonAncestor
 		else :
 			# Check if both keys are the same and the key is in the graph
