@@ -7,7 +7,7 @@ class TestfindLCA(unittest.TestCase):
 
     def test_null_node(self):
         testNode = LCA.Node(None)
-        self.assertEquals(testNode.key,None, "Should be null")
+        self.assertEqual(testNode.key,None, "Should be null")
 
     def test_null_tree(self):
         ## Test 1 ##
