@@ -13,7 +13,7 @@ class TestfindLCA(unittest.TestCase):
 
     def test_empty_graph(self):
         graph = LCA.Graph(1)
-        graph.addEdge(LCA.Node(1), None)
+        graph.addVertex(1)
         #  Testing with a single leaf node and keys not in the tree
         self.assertEqual(LCA.findLCA(graph, 1, 1, 1), 1, "Should be 1")
         #self.assertEqual(LCA.findLCA(graph, 1, 1, 5), -1, "Should be -1")
@@ -21,6 +21,9 @@ class TestfindLCA(unittest.TestCase):
 
     def test_print_graph(self):
         graph = LCA.Graph(3)
+        graph.addVertex(1)
+        graph.addVertex(2)
+        graph.addVertex(3)
         graph.addEdge(LCA.Node(1),LCA.Node(2))
         graph.addEdge(LCA.Node(1),LCA.Node(3))
         graph.printGraph()
@@ -35,6 +38,13 @@ class TestfindLCA(unittest.TestCase):
         #   4       5       6       7
         #
         graph = LCA.Graph(7)
+        graph.addVertex(1)
+        graph.addVertex(2)
+        graph.addVertex(3)
+        graph.addVertex(4)
+        graph.addVertex(5)
+        graph.addVertex(6)
+        graph.addVertex(7)
         graph.addEdge(LCA.Node(1),LCA.Node(2))
         graph.addEdge(LCA.Node(1),LCA.Node(3))
         graph.addEdge(LCA.Node(2),LCA.Node(4))
@@ -70,6 +80,13 @@ class TestfindLCA(unittest.TestCase):
         #
 
         graph = LCA.Graph(7)
+        graph.addVertex(1)
+        graph.addVertex(2)
+        graph.addVertex(3)
+        graph.addVertex(4)
+        graph.addVertex(5)
+        graph.addVertex(6)
+        graph.addVertex(7)
         graph.addEdge(LCA.Node(1),LCA.Node(2))
         graph.addEdge(LCA.Node(2),LCA.Node(3))
         graph.addEdge(LCA.Node(3),LCA.Node(4))
@@ -95,6 +112,15 @@ class TestfindLCA(unittest.TestCase):
         #       8               9
         #
         graph = LCA.Graph(9)
+        graph.addVertex(1)
+        graph.addVertex(2)
+        graph.addVertex(3)
+        graph.addVertex(4)
+        graph.addVertex(5)
+        graph.addVertex(6)
+        graph.addVertex(7)
+        graph.addVertex(8)
+        graph.addVertex(9)
         graph.addEdge(LCA.Node(1),LCA.Node(2))
         graph.addEdge(LCA.Node(1),LCA.Node(3))
         graph.addEdge(LCA.Node(2),LCA.Node(4))

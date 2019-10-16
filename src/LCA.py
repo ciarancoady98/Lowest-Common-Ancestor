@@ -23,14 +23,24 @@ class Graph:
 		while(i <= noOfVertices):
 			self.graph.append([])
 			i+=1
+		self.vertices = []
+		self.hasEdges = False
+	
+	# Function to add a vertex to the graph
+	def addVertex(self, key):
+		self.vertices.append(key)
 
 	# Function to add an edge to the graph 
 	def addEdge(self,u,v): 
 		self.graph[u.key].append(v)
+		self.hasEdges = True
 
 	# Function to print the graph
 	def printGraph(self):
 		print(self.graph) 
+
+	def isConnected(self):
+		return self.hasEdges
 
 # A helper function that does a DFS of the graph in search of the keys
 # and if found, returns paths to those nodes 
@@ -53,8 +63,7 @@ def LCARecursive(graph, stack, visited, current, key1, key2, paths1, paths2):
 
 def findLCA(graph, start, key1, key2):
 	if(graph is not None):
-
-		if(graph.noOfVertices > 2):
+		if(graph.isConnected is True):
 			stack = []
 			paths1 = []
 			paths2 = []
@@ -94,10 +103,12 @@ def findLCA(graph, start, key1, key2):
 						i += 1
 			print("The greatest common ancestor is : ", greatestCommonAncestor)
 			return greatestCommonAncestor
-		else:
-			print("this graph has less than 1 vertex")
-			if(key1 is graph.graph[1] or key2 is graph.graph[1]):
-				return 1
-
+		else :
+			# Check if both keys are the same and the key is in the graph
+			if(key1 is key2):
+				for vertex in graph.vertices:
+					if(vertex is key1):
+						return key1
+			return -1
 	else:
 		return -1
