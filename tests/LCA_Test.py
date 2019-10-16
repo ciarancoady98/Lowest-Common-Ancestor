@@ -1,31 +1,31 @@
 import unittest
 import sys
 sys.path.append('../src')
-import LCA
+import Graph
 
-class TestfindLCA(unittest.TestCase):
+class TestfindLCA_DAG(unittest.TestCase):
 
     def test_null_graph(self):
         #  Testing a null input
-        self.assertEqual(LCA.findLCA(None, 1, 0, 0), -1, "Should be -1")
-        self.assertEqual(LCA.findLCA(None, 1, 1, 5), -1, "Should be -1")
-        self.assertEqual(LCA.findLCA(None, 1, -10, 6), -1, "Should be -1")
+        self.assertEqual(Graph.findLCA(None, 1, 0, 0), -1, "Should be -1")
+        self.assertEqual(Graph.findLCA(None, 1, 1, 5), -1, "Should be -1")
+        self.assertEqual(Graph.findLCA(None, 1, -10, 6), -1, "Should be -1")
 
     def test_empty_graph(self):
         # Testing with a single leaf node and keys not in the tree
-        graph = LCA.Graph(1)
+        graph = Graph.Graph(1)
         graph.addVertex(1)
-        self.assertEqual(LCA.findLCA(graph, 1, 1, 1), 1, "Should be 1")
-        self.assertEqual(LCA.findLCA(graph, 1, 1, 5), -1, "Should be -1")
-        self.assertEqual(LCA.findLCA(graph, 1, -10, 6), -1, "Should be -1")
+        self.assertEqual(Graph.findLCA(graph, 1, 1, 1), 1, "Should be 1")
+        self.assertEqual(Graph.findLCA(graph, 1, 1, 5), -1, "Should be -1")
+        self.assertEqual(Graph.findLCA(graph, 1, -10, 6), -1, "Should be -1")
 
     def test_print_graph(self):
-        graph = LCA.Graph(3)
+        graph = Graph.Graph(3)
         graph.addVertex(1)
         graph.addVertex(2)
         graph.addVertex(3)
-        graph.addEdge(LCA.Node(1),LCA.Node(2))
-        graph.addEdge(LCA.Node(1),LCA.Node(3))
+        graph.addEdge(Graph.Node(1),Graph.Node(2))
+        graph.addEdge(Graph.Node(1),Graph.Node(3))
         graph.printGraph()
 
     def test_balanced_tree(self):
@@ -37,7 +37,7 @@ class TestfindLCA(unittest.TestCase):
         #   |       |       |       |
         #   4       5       6       7
         #
-        graph = LCA.Graph(7)
+        graph = Graph.Graph(7)
         graph.addVertex(1)
         graph.addVertex(2)
         graph.addVertex(3)
@@ -45,18 +45,18 @@ class TestfindLCA(unittest.TestCase):
         graph.addVertex(5)
         graph.addVertex(6)
         graph.addVertex(7)
-        graph.addEdge(LCA.Node(1),LCA.Node(2))
-        graph.addEdge(LCA.Node(1),LCA.Node(3))
-        graph.addEdge(LCA.Node(2),LCA.Node(4))
-        graph.addEdge(LCA.Node(2),LCA.Node(5))
-        graph.addEdge(LCA.Node(3),LCA.Node(6))
-        graph.addEdge(LCA.Node(3),LCA.Node(7))
+        graph.addEdge(Graph.Node(1),Graph.Node(2))
+        graph.addEdge(Graph.Node(1),Graph.Node(3))
+        graph.addEdge(Graph.Node(2),Graph.Node(4))
+        graph.addEdge(Graph.Node(2),Graph.Node(5))
+        graph.addEdge(Graph.Node(3),Graph.Node(6))
+        graph.addEdge(Graph.Node(3),Graph.Node(7))
 
-        self.assertEqual(LCA.findLCA(graph, 1, 4, 5), 2, "Should be 2")
-        self.assertEqual(LCA.findLCA(graph, 1, 4, 6), 1, "Should be 1")
-        self.assertEqual(LCA.findLCA(graph, 1, 3, 4), 1, "Should be 1")
-        self.assertEqual(LCA.findLCA(graph, 1, 2, 4), 2, "Should be 2")
-        self.assertEqual(LCA.findLCA(graph, 1, 2, 8), -1, "Should be -1")
+        self.assertEqual(Graph.findLCA(graph, 1, 4, 5), 2, "Should be 2")
+        self.assertEqual(Graph.findLCA(graph, 1, 4, 6), 1, "Should be 1")
+        self.assertEqual(Graph.findLCA(graph, 1, 3, 4), 1, "Should be 1")
+        self.assertEqual(Graph.findLCA(graph, 1, 2, 4), 2, "Should be 2")
+        self.assertEqual(Graph.findLCA(graph, 1, 2, 8), -1, "Should be -1")
 
         
         
@@ -78,7 +78,7 @@ class TestfindLCA(unittest.TestCase):
         # 7
         #
 
-        graph = LCA.Graph(7)
+        graph = Graph.Graph(7)
         graph.addVertex(1)
         graph.addVertex(2)
         graph.addVertex(3)
@@ -86,17 +86,17 @@ class TestfindLCA(unittest.TestCase):
         graph.addVertex(5)
         graph.addVertex(6)
         graph.addVertex(7)
-        graph.addEdge(LCA.Node(1),LCA.Node(2))
-        graph.addEdge(LCA.Node(2),LCA.Node(3))
-        graph.addEdge(LCA.Node(3),LCA.Node(4))
-        graph.addEdge(LCA.Node(4),LCA.Node(5))
-        graph.addEdge(LCA.Node(5),LCA.Node(6))
-        graph.addEdge(LCA.Node(6),LCA.Node(7))
+        graph.addEdge(Graph.Node(1),Graph.Node(2))
+        graph.addEdge(Graph.Node(2),Graph.Node(3))
+        graph.addEdge(Graph.Node(3),Graph.Node(4))
+        graph.addEdge(Graph.Node(4),Graph.Node(5))
+        graph.addEdge(Graph.Node(5),Graph.Node(6))
+        graph.addEdge(Graph.Node(6),Graph.Node(7))
 
-        self.assertEqual(LCA.findLCA(graph, 1, 4, 5), 4, "Should be 4")
-        self.assertEqual(LCA.findLCA(graph, 1, 4, 6), 4, "Should be 4")
-        self.assertEqual(LCA.findLCA(graph, 1, 3, 4), 3, "Should be 3")
-        self.assertEqual(LCA.findLCA(graph, 1, 2, 4), 2, "Should be 2")
+        self.assertEqual(Graph.findLCA(graph, 1, 4, 5), 4, "Should be 4")
+        self.assertEqual(Graph.findLCA(graph, 1, 4, 6), 4, "Should be 4")
+        self.assertEqual(Graph.findLCA(graph, 1, 3, 4), 3, "Should be 3")
+        self.assertEqual(Graph.findLCA(graph, 1, 2, 4), 2, "Should be 2")
 
     def test_balanced_tree_common_parent(self):
         #   Testing a simple balanced binary tree
@@ -109,7 +109,7 @@ class TestfindLCA(unittest.TestCase):
         #       |               |
         #       8               9
         #
-        graph = LCA.Graph(9)
+        graph = Graph.Graph(9)
         graph.addVertex(1)
         graph.addVertex(2)
         graph.addVertex(3)
@@ -119,26 +119,26 @@ class TestfindLCA(unittest.TestCase):
         graph.addVertex(7)
         graph.addVertex(8)
         graph.addVertex(9)
-        graph.addEdge(LCA.Node(1),LCA.Node(2))
-        graph.addEdge(LCA.Node(1),LCA.Node(3))
-        graph.addEdge(LCA.Node(2),LCA.Node(4))
-        graph.addEdge(LCA.Node(2),LCA.Node(5))
-        graph.addEdge(LCA.Node(3),LCA.Node(6))
-        graph.addEdge(LCA.Node(3),LCA.Node(7))
-        graph.addEdge(LCA.Node(4),LCA.Node(8))
-        graph.addEdge(LCA.Node(5),LCA.Node(8))
-        graph.addEdge(LCA.Node(6),LCA.Node(9))
-        graph.addEdge(LCA.Node(7),LCA.Node(9))
+        graph.addEdge(Graph.Node(1),Graph.Node(2))
+        graph.addEdge(Graph.Node(1),Graph.Node(3))
+        graph.addEdge(Graph.Node(2),Graph.Node(4))
+        graph.addEdge(Graph.Node(2),Graph.Node(5))
+        graph.addEdge(Graph.Node(3),Graph.Node(6))
+        graph.addEdge(Graph.Node(3),Graph.Node(7))
+        graph.addEdge(Graph.Node(4),Graph.Node(8))
+        graph.addEdge(Graph.Node(5),Graph.Node(8))
+        graph.addEdge(Graph.Node(6),Graph.Node(9))
+        graph.addEdge(Graph.Node(7),Graph.Node(9))
 
-        self.assertEqual(LCA.findLCA(graph, 1, 4, 5), 2, "Should be 2")
-        self.assertEqual(LCA.findLCA(graph, 1, 4, 6), 1, "Should be 1")
-        self.assertEqual(LCA.findLCA(graph, 1, 3, 4), 1, "Should be 1")
-        self.assertEqual(LCA.findLCA(graph, 1, 2, 4), 2, "Should be 2")
-        self.assertEqual(LCA.findLCA(graph, 1, 4, 8), 4, "Should be 4")
-        self.assertEqual(LCA.findLCA(graph, 1, 8, 4), 4, "Should be 4")
-        self.assertEqual(LCA.findLCA(graph, 1, 8, 5), 5, "Should be 5")
-        self.assertEqual(LCA.findLCA(graph, 1, 6, 9), 6, "Should be 6")
-        self.assertEqual(LCA.findLCA(graph, 1, 7, 9), 7, "Should be 7")
+        self.assertEqual(Graph.findLCA(graph, 1, 4, 5), 2, "Should be 2")
+        self.assertEqual(Graph.findLCA(graph, 1, 4, 6), 1, "Should be 1")
+        self.assertEqual(Graph.findLCA(graph, 1, 3, 4), 1, "Should be 1")
+        self.assertEqual(Graph.findLCA(graph, 1, 2, 4), 2, "Should be 2")
+        self.assertEqual(Graph.findLCA(graph, 1, 4, 8), 4, "Should be 4")
+        self.assertEqual(Graph.findLCA(graph, 1, 8, 4), 4, "Should be 4")
+        self.assertEqual(Graph.findLCA(graph, 1, 8, 5), 5, "Should be 5")
+        self.assertEqual(Graph.findLCA(graph, 1, 6, 9), 6, "Should be 6")
+        self.assertEqual(Graph.findLCA(graph, 1, 7, 9), 7, "Should be 7")
 
 
 if __name__ == '__main__':
