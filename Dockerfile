@@ -10,6 +10,7 @@ pip install coverage && \
 cd ~ && \
 git clone https://github.com/ciarancoady98/Lowest-Common-Ancestor.git
 CMD cd ~ && \
+git pull origin master && \
 cd Lowest-Common-Ancestor/tests && \
 echo && \
 echo && \
