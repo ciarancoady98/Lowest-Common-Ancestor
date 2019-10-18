@@ -1,6 +1,15 @@
 # Lowest-Common-Ancestor
 
-A python program that gets the lowest common ancestor for a graph
+A python program and unit tests environment that gets the lowest common ancestor for a graph for CSU33012 software engineering module.
+
+# Master Branch
+Final merged solution
+# BinaryTree Branch 
+The initial LCA solution
+# DAG Branch
+Enhanced LCA solution
+# Biography Branch
+George Hotz - An Influential Software Engineer
 
 # Requirements
 
@@ -17,10 +26,12 @@ Dockerfile, in which case you will need to have docker installed and configured 
 
 # Testing
 
-Pytest is used to run unit tests.
+Pytest is used to run unit tests. 
 Pytests coverage plugin is used to check code coverage, as shown below.
 
 ![Screenshot](docs/unitTests.png)
+
+Using the `coverage html` command will generate a html code coverage report, which can be viewed in a browser.
 
 # Docker
 
