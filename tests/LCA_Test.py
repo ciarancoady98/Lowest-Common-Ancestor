@@ -3,13 +3,13 @@ import sys
 sys.path.append('../src')
 import BinaryTree
 
-class TestfindBinaryTreeBinaryTree(unittest.TestCase):
+class TestfindLCA_BinaryTree(unittest.TestCase):
 
-    def test_null_node(self):
+    def test_null_node_BT(self):
         testNode = BinaryTree.Node(None)
         self.assertEqual(testNode.key,None, "Should be null")
 
-    def test_null_tree(self):
+    def test_null_tree_BT(self):
         #  Testing a null input
         self.assertEqual(BinaryTree.findLCA(None, 0, 0), -1, "Should be -1")
         self.assertEqual(BinaryTree.findLCA(None, 1, 5), -1, "Should be -1")
@@ -19,7 +19,7 @@ class TestfindBinaryTreeBinaryTree(unittest.TestCase):
         self.assertEqual(BinaryTree.findLCA2(None, 1, 5), -1, "Should be -1")
         self.assertEqual(BinaryTree.findLCA2(None, -10, 6), -1, "Should be -1")
 
-    def test_leaf_node(self):
+    def test_leaf_node_BT(self):
         #  Testing with a single leaf node and keys not in the tree
         self.assertEqual(BinaryTree.findLCA(BinaryTree.Node(1), 1, 1), 1, "Should be 1")
         self.assertEqual(BinaryTree.findLCA(BinaryTree.Node(1), 1, 5), -1, "Should be -1")
@@ -31,7 +31,7 @@ class TestfindBinaryTreeBinaryTree(unittest.TestCase):
 
         
 
-    def test_node_with_cycle(self):
+    def test_node_with_cycle_BT(self):
         # Testing a node that has its self as its child
         root = BinaryTree.Node(1)
         root.left = root
@@ -39,7 +39,7 @@ class TestfindBinaryTreeBinaryTree(unittest.TestCase):
         self.assertEqual(BinaryTree.findLCA(root, 1, 1), 1, "Should be 1")
         self.assertEqual(BinaryTree.findLCA2(root, 1, 1), 1, "Should be 1")
 
-    def test_balanced_tree(self):
+    def test_balanced_tree_BT(self):
         #   Testing a simple balanced binary tree
         #
         #               1
@@ -68,7 +68,7 @@ class TestfindBinaryTreeBinaryTree(unittest.TestCase):
 
         
         
-    def test_left_leaning_tree(self):
+    def test_left_leaning_tree_BT(self):
          ## Test 4 ##
         #   Testing a left leaning tree
         #
@@ -106,7 +106,7 @@ class TestfindBinaryTreeBinaryTree(unittest.TestCase):
         self.assertEqual(BinaryTree.findLCA2(root, 2, 4), 2, "Should be 2")
         
 
-    def test_right_leaning_tree(self):
+    def test_right_leaning_tree_BT(self):
         ## Test 5 ##
         #   Testing a right leaning tree
         #
@@ -142,7 +142,7 @@ class TestfindBinaryTreeBinaryTree(unittest.TestCase):
         self.assertEqual(BinaryTree.findLCA2(root, 3, 4), 3, "Should be 3")
 
 
-    def test_balanced_tree_common_parent(self):
+    def test_balanced_tree_common_parent_BT(self):
         ## Test 3 ##
         #   Testing a simple balanced binary tree
         #
