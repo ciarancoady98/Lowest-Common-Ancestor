@@ -1,9 +1,8 @@
 # Author Ciaran Coady
+# Student Number 17326951
 # Python program that takes a brute force approach
 # to find the lowest common ancestor of two nodes in
 # a directed acyclic graph.
-from collections import defaultdict 
-
 # This class creates the node for a graph that stores
 # a key
 class Node:

@@ -1,6 +1,6 @@
 #Author Ciaran Coady
+# Student Number 17326951
 # Python Program for Lowest Common Ancestor in a Directed Acyclic Graph
-
 # A Node in the graph 
 class Node: 
 	# Constructor to create a new binary node 
@@ -24,8 +24,8 @@ def findLCARecursive(root, key1, key2, found1, found2):
 		return -1
 
 	# If the node has been visited return as we have found a cycle
-	if(root.visited is True):
-		return -1
+	#if(root.visited is True):
+	#	return -1
 
 	# Otherwise visit this node and search its left and right subtrees
 	#root.visited = True
